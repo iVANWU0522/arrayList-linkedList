@@ -77,7 +77,7 @@ public class MyArrayList<T> implements Iterable<T> {
 
         T deletedVal = data[index - 1];
  
-        System.arraycopy(data, index, data, index - 1, size - index);
+        System.arraycopy(data, index + 1, data, index, size - index - 1);
         data[size - 1] = null;
 
         size --;
@@ -120,6 +120,7 @@ public class MyArrayList<T> implements Iterable<T> {
 
         T[] temp = (T[]) new Object[newCap];
 
+        // System.arraycopy(data, 0, temp, 0, size);
         for(int i = 0; i < size; i++) {
             temp[i] = data[i];
         }

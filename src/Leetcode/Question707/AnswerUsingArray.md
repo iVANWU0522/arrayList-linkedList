@@ -1,3 +1,5 @@
+# Use array without array copy method
+
 ```
 class MyLinkedList {
     private int size;
@@ -105,4 +107,191 @@ class MyLinkedList {
  * obj.addAtIndex(index,val);
  * obj.deleteAtIndex(index);
  */
+```
+
+# Use array with array copy method
+
+```
+import java.util.Arrays;
+
+class MyLinkedList {
+    private int size;
+    private int[] data;
+
+    public MyLinkedList() {
+        data = new int[4];
+        size = 0;
+    }
+
+    public int get(int index) {
+        if (index < 0 || index >= size) {
+            return -1;
+        }
+
+        return data[index];
+    }
+
+    public void addAtHead(int val) {
+        addAtIndex(0, val);
+    }
+
+    public void addAtTail(int val) {
+        if (size == data.length) {
+            resize(data.length * 2);
+        }
+
+        data[size] = val;
+        size++;
+    }
+
+    public void addAtIndex(int index, int val) {
+        if (index > size) {
+            return;
+        }
+
+        if (size == data.length) {
+            resize(data.length * 2);
+        }
+
+        System.arraycopy(data, index, data, index + 1, size - index);
+
+        data[index] = val;
+        size++;
+    }
+
+    public void deleteAtIndex(int index) {
+        if (index < 0 || index >= size) {
+            return;
+        }
+
+        if (size == data.length / 4) {
+            resize(data.length / 2);
+        }
+
+        System.arraycopy(data, index + 1, data, index, size - index - 1);
+
+        size--;
+
+        int[] temp = new int[size];
+        System.arraycopy(data, 0, temp, 0, size);
+
+        data = temp;
+    }
+
+    /**
+     * tools method
+     */
+
+    public void resize(int newCap) {
+        if (newCap < size) {
+            return;
+        }
+
+        int[] temp = new int[newCap];
+        System.arraycopy(data, 0, temp, 0, size);
+
+        data = temp;
+    }
+}
+
+/**
+ * Your MyLinkedList object will be instantiated and called as such:
+ * MyLinkedList obj = new MyLinkedList();
+ * int param_1 = obj.get(index);
+ * obj.addAtHead(val);
+ * obj.addAtTail(val);
+ * obj.addAtIndex(index,val);
+ * obj.deleteAtIndex(index);
+ */
+class MyLinkedList {
+    private int size;
+    private int[] data;
+
+    public MyLinkedList() {
+        data = new int[4];
+        size = 0;
+    }
+
+    public int get(int index) {
+        if (index < 0 || index >= size) {
+            return -1;
+        }
+
+        return data[index];
+    }
+
+    public void addAtHead(int val) {
+        addAtIndex(0, val);
+    }
+
+    public void addAtTail(int val) {
+        if (size == data.length) {
+            resize(data.length * 2);
+        }
+
+        data[size] = val;
+        size++;
+    }
+
+    public void addAtIndex(int index, int val) {
+        if (index > size) {
+            return;
+        }
+
+        if (size == data.length) {
+            resize(data.length * 2);
+        }
+
+        System.arraycopy(data, index, data, index + 1, size - index);
+
+        data[index] = val;
+        size++;
+    }
+
+    public void deleteAtIndex(int index) {
+        if (index < 0 || index >= size) {
+            return;
+        }
+
+        if (size == data.length / 4) {
+            resize(data.length / 2);
+        }
+
+        System.arraycopy(data, index + 1, data, index, size - index - 1);
+
+        size--;
+
+        int[] temp = new int[size];
+        System.arraycopy(data, 0, temp, 0, size);
+
+        data = temp;
+    }
+
+    /**
+     * tools method
+     */
+
+    public void resize(int newCap) {
+        if (newCap < size) {
+            return;
+        }
+
+        int[] temp = new int[newCap];
+        System.arraycopy(data, 0, temp, 0, size);
+
+        data = temp;
+    }
+}
+
+/**
+
+* Your MyLinkedList object will be instantiated and called as such:
+* MyLinkedList obj = new MyLinkedList();
+* int param_1 = obj.get(index);
+* obj.addAtHead(val);
+* obj.addAtTail(val);
+* obj.addAtIndex(index,val);
+* obj.deleteAtIndex(index);
+ */
+
 ```
