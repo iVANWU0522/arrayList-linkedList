@@ -178,14 +178,14 @@ public class MyArrayList<T> implements Iterable<T> {
     public static void main(String[] args) {
         MyArrayList<Integer> arr = new MyArrayList<>(3);
 
-        for (int i = 1; i <= 5; i++) {
-            arr.addLast(i);
-        }
+        // for (int i = 1; i <= 5; i++) {
+        //     arr.addLast(i);
+        // }
 
-        arr.remove(3);
+        // arr.remove(3);
         arr.add(1, 9);
-        arr.addFirst(100);
-        int val = arr.removeLast();
+        // arr.addFirst(100);
+        // int val = arr.removeLast();
 
         for (int i = 0; i < arr.size(); i++) {
             System.out.println(arr.get(i));
